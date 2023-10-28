@@ -3,10 +3,8 @@ package com.example.SpringIntegrationDemo2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.integration.core.GenericHandler;
 import org.springframework.integration.core.GenericTransformer;
 import org.springframework.integration.dsl.IntegrationFlow;
-import org.springframework.messaging.MessageHeaders;
 
 @Configuration
 public class InboundFlowConfig {
@@ -26,13 +24,6 @@ public class InboundFlowConfig {
 
         return IntegrationFlow
                 .from("channelStudentIn")
-                .handle(new GenericHandler<Object>() {
-                    @Override
-                    public Object handle(Object payload, MessageHeaders headers) {
-                        
-                        return null;
-                    }
-                })
                 .transform((GenericTransformer<Object, Object>) source -> {
                     
                     var studentSource = (Student) source;
